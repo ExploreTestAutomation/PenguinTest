@@ -16,19 +16,31 @@ public class LoginPage {
 		PageFactory.initElements(rDriver, this);
 	}
 	
+	@FindBy(xpath="//*[@id='account-button']/img")
+	WebElement accountIcon;
 	
-	@FindBy(id = "Email")
+	@FindBy(xpath ="//*[@id='login']/div[1]/label")
 	WebElement email;
 	
-	@FindBy(id="Password")
+	@FindBy(xpath="//*[@id='login']/div[2]/label")
 	WebElement password;
 
-	@FindBy(xpath = "//button[@class='button-1 login-button']")
+	@FindBy(xpath = "//a[normalize-space()='Sign In']")
 	WebElement LoginBtn;
+	
+	
+	@FindBy(xpath = "//*[@id='create-account-submit']")
+	WebElement signIN;
 	
 	
 	@FindBy(linkText = "Logout")
 	WebElement logout;
+	
+	public void clickAccountIcon() {
+		
+		accountIcon.click();
+	}
+	
 	
 	public void enterEmail(String emailAdd)
 	{

@@ -2,26 +2,13 @@ Feature: Login
 
 Scenario: Successful Login with Valid Credentials 
 	Given User Launch Chrome browser 
-	When User opens URL "http://admin-demo.nopcommerce.com/login" 
-	And User enters Email as "admin@yourstore.com" and Password as "admin" 
-	And Click on Login 
-	Then Page Title should be "Dashboard / nopCommerce administration" 
+	When User opens URL "https://penguinrandomhouse.com/" 
+	And User click on account-icon
+	And Click on Login
+	And User enters Email as "mangroliahetal@gmail.com" and Password as "Kirtan27" 	
+	Then Page Title should be "Penguin Random House" 
+	And User hover account-icon button
 	When User click on Log out link 
-	Then Page Title should be "Your store. Login" 
 	And close browser 	
 	
 
-	Scenario Outline: Successful Login with Valid Credentials 
-	Given User Launch Chrome browser 
-	When User opens URL "http://admin-demo.nopcommerce.com/login" 
-	And User enters Email as "<email>" and Password as "<password>" 
-	And Click on Login 
-	Then Page Title should be "Dashboard / nopCommerce administration" 
-	When User click on Log out link 
-	Then Page Title should be "Your store. Login" 
-	And close browser 	
-	
-Examples:
-|email|password|
-|admin@yourstore.com|admin|
-|test@yourstore.com|admin|
