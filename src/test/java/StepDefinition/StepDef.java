@@ -1,5 +1,8 @@
 package StepDefinition;
 import java.awt.AWTException;	
+import java.io.*;    
+import java.net.*;
+import java.util.List;
 import java.awt.Robot;	
 import java.awt.event.KeyEvent;	
 import java.io.File;
@@ -138,7 +141,45 @@ public class StepDef extends BaseClass {
 	}
 
 	
+
+//@Then("verify broken url")
+public void verify_broken_url() {
 	
+	// driver.get("http://www.applicoinc.com");
+
+     // Get all the links URL
+     List<WebElement> ele = driver.findElements(By.tagName("a"));
+     System.out.println("size:" + ele.size());
+     boolean isValid = false;
+     for (int i = 0; i < ele.size(); i++) {
+
+         isValid = getResponseCode(ele.get(i).getAttribute("href"));
+         if (isValid) {
+             System.out.println("ValidLinks:" + ele.get(i).getAttribute("href"));
+             driver.get(ele.get(i).getAttribute("href"));
+             List<WebElement> ele1 = driver.findElements(By.tagName("a"));
+             System.out.println("InsideSize:" + ele1.size());
+             for (int j=0; j<ele1.size(); j++){
+                 isValid = getResponseCode(ele.get(j).getAttribute("href"));
+                 if (isValid) {
+                     System.out.println("ValidLinks:" + ele.get(j).getAttribute("href"));
+                 }
+                 else{
+                     System.out.println("InvalidLinks:"+ ele.get(j).getAttribute("href"));
+                 }
+             }
+
+             } else {
+                 System.out.println("InvalidLinks:"
+                         + ele.get(i).getAttribute("href"));
+             }
+
+         }
+     
+    
+     } 
+
+
 	
 	
 	/*@Then("close browser")
